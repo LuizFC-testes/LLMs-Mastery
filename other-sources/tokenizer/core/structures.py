@@ -90,9 +90,8 @@ def tokenize(
     if join_split_text:
         working_sentence = re.sub(f"\w+({split_text_char})\n\w+", '', working_sentence)
     # Separating punctuation from words
-    spl_ch = split_characters[0]
     for punct in punctuation_patterns:
-        working_sentence = re.sub(punct, f"{spl_ch}\g<0>{spl_ch}", working_sentence)
+        working_sentence = re.sub(punct, " \g<0> ", working_sentence)
     # Splitting the sentence by the split characters
     working_sentence = re.sub(split_characters, delimiter_token, working_sentence)
     str_tokens = [t.strip() for t in working_sentence.split(delimiter_token) if t.strip() != ""]
